@@ -5,6 +5,7 @@
  */
 package com.mycompany.test2k19.controllers;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
     
-    
+    @PostMapping("registration")
+    public void registration (){
+        
+    }
     
 }

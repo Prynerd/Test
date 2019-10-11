@@ -7,6 +7,8 @@ package com.mycompany.test2k19.data.domain;
 
 import com.mycompany.test2k19.data.enums.Authority;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -24,7 +28,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name= "tbl_user")
-public class User {
+public class User implements UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,11 +117,11 @@ public class User {
         return validateToken;
     }
 
-    public boolean isIsValidated() {
+    public boolean isValidated() {
         return isValidated;
     }
 
-    public boolean isIsDeleted() {
+    public boolean isDeleted() {
         return isDeleted;
     }
 
@@ -151,6 +155,38 @@ public class User {
 
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !isDeleted;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+       return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return !isDeleted;
     }
     
     
