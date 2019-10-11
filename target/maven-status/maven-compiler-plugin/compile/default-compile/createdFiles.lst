@@ -1,8 +1,12 @@
-com\mycompany\test2k19\data\enums\Authority.class
 com\mycompany\test2k19\data\domain\Country.class
+com\mycompany\test2k19\service\UserService.class
+com\mycompany\test2k19\service\impl\UserServiceImpl.class
+com\mycompany\test2k19\data\domain\Address.class
+com\mycompany\test2k19\data\enums\Authority.class
+com\mycompany\test2k19\repository\UserRepository.class
 com\mycompany\test2k19\data\domain\User.class
+com\mycompany\test2k19\controllers\UserController.class
 com\mycompany\test2k19\data\domain\Country_.class
 com\mycompany\test2k19\data\domain\User_.class
 com\mycompany\test2k19\Main.class
 com\mycompany\test2k19\data\domain\Address_.class
-com\mycompany\test2k19\data\domain\Address.class
