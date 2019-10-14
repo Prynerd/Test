@@ -65,11 +65,13 @@ public class User implements UserDetails{
         
     }
 
-    public User(String nickName, String email, String firstName, String lastName) {
+    public User(String nickName, String email, String firstName, String lastName, String password, String validateToken) {
         this.nickName = nickName;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
+        this.validateToken = validateToken;
         
         this.authority = Authority.COSTUMER;
         this.isDeleted = false;

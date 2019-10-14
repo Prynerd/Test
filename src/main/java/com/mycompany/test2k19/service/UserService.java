@@ -5,6 +5,7 @@
  */
 package com.mycompany.test2k19.service;
 
+import com.mycompany.test2k19.data.requestdto.RegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -12,5 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author Prynerd
  */
 public interface UserService extends UserDetailsService{
+    
+    void CreateUser(RegistrationDto rDto);
+    
+    public String validationTokenGeneration();
     
 }

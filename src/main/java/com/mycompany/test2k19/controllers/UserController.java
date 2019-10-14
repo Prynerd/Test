@@ -5,7 +5,12 @@
  */
 package com.mycompany.test2k19.controllers;
 
+import com.mycompany.test2k19.data.requestdto.RegistrationDto;
+import com.mycompany.test2k19.service.impl.UserServiceImpl;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,8 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
     
-    @PostMapping("registration")
-    public void registration (){
+    private UserServiceImpl userServiceImpl;
+    
+    @Autowired
+    public UserController(UserServiceImpl userServiceImpl){
+        this.userServiceImpl = userServiceImpl;
+    }
+    
+    @PostMapping("/registration")
+    public void registration (@Valid @RequestBody RegistrationDto rDto){
+        
+        userServiceImpl.CreateUser(rDto);
         
     }
     
