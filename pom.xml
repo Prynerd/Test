@@ -87,13 +87,39 @@
             <artifactId>spring-context-support</artifactId>
             <version>5.1.8.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
-
+        
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>8.0.16</version>
+                    <type>jar</type>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>heroku</id>
+            <activation>
+                <property>
+                    <name>env.SPRING_PROFILES_ACTIVE</name>
+                    <value>heroku</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -101,7 +127,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.mycompany.test2k19.Main</mainClass>
+                    <mainClass>com.progmatic.wineshop.Main</mainClass>
                 </configuration>
                 <executions>
                     <execution>
